@@ -54,24 +54,15 @@ public final class MainInterface extends JFrame {
         // 获取用户信息
         userInfo = InteractWithServer.getUserInfo(userId);
         // 调试使用
-        System.out.println("----------- 个人信息 --------------");
+        System.out.println("************** 个人信息 **************");
         System.out.println("ID：" + userInfo.getUserId());
         System.out.println("昵称：" + userInfo.getUserName());
         System.out.println("Email：" + userInfo.getUserEmail());
         System.out.println("性别：" + userInfo.getUserSex());
         System.out.println("生日：" + userInfo.getUserBirthday());
-        System.out.println("头像：" + userInfo.getUserProfile());
         System.out.println("个性签名：" + userInfo.getUserSignature());
         System.out.println("注册时间：" + userInfo.getUserRegistertime());
-        System.out.print("好友列表 : ");
-        for (int i = 0; i < userInfo.getFriends().size(); i++) {
-            System.out.print(userInfo.getFriends().get(i).getName() + " ");
-        }
-        System.out.print("\n群列表 ： ");
-        for (int i = 0; i < userInfo.getGroups().size(); i++) {
-            System.out.print(userInfo.getGroups().get(i).getName() + " ");
-        }
-        System.out.println("\n----------- END --------------");
+        System.out.println("*************************************");
         // 界面部分
         // 更改显示的小图标
         setIconImage(Toolkit.getDefaultToolkit().createImage("./resource/mainpanel/mychat_logo.png"));

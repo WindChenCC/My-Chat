@@ -115,7 +115,6 @@ class LoginListener implements ActionListener {
             // 验证用户或密码是否正确
             Object isLoginSuccess = InteractWithServer.isLogin(userIdString, userPasswordString);
 
-            System.out.println("当前登录状态：" + isLoginSuccess);
             if (isLoginSuccess != null) {
                 String loginResult = isLoginSuccess.toString();
                 if (loginResult.equals("true")) {

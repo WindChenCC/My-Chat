@@ -78,7 +78,7 @@ public final class DataStream implements Runnable {
             } catch (IOException e1) {
                 System.out.println("服务器连接关闭失败：" + e.getMessage());
             }
-            System.out.println("与服务端失去联系 " + e.getMessage());
+            System.out.println("与服务端失去连接 " + e.getMessage());
         }
     }
 

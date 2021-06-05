@@ -28,12 +28,11 @@ public final class VerifyThread implements Runnable {
             while (true) {
                 // 等待用户连接
                 Socket userSocket = serverSocket.accept();
-                System.out.println(userSocket.getInetAddress() + " 发送来的新的验证");
                 // 为用户接入创建一个验证线程
                 new Thread(new VerifyConnection(userSocket)).start();
             }
         } catch (IOException e) {
-            System.out.println("验证端口服务异常 ：" + e.getMessage());
+            System.out.println("验证端口服务异常：" + e.getMessage());
         }
     }
 }

@@ -70,7 +70,9 @@ public final class DataStream implements Runnable {
             ChatServer.getClientUser().remove(userId);
             // 通知所有好友离线情况
             sendToAllFriends("OnlineSituation```离线```" + userId);
-            System.out.println("删除了key为" + userId + "的hashmap值，剩余在线人数 ：" + ChatServer.getClientUser().size());
+            System.out.println("用户：" + userId + " 已下线");
+            System.out.println("MyChat在线用户：" + ChatServer.getClientUser().size());
+            System.out.println("*********************************************");
             // 关闭为该用户创建的数据库连接
             con.close();
         }

@@ -38,10 +38,11 @@ public final class VerifyConnection implements Runnable {
         String objName = obj.getClass().getSimpleName();
         // 返回结果对象
         Object result = null;
-        System.out.println("当前处理对象类型为 " + objName);
         switch (objName) {
             // 登录验证
             case "ChatVerify":
+                System.out.println("正在处理登录验证");
+                System.out.println("*********************************************");
                 ChatVerify loginVerify = (ChatVerify) obj;
                 // 该用户已登录
                 if (ChatServer.getClientUser().containsKey(loginVerify.getUserId())) {
@@ -50,7 +51,6 @@ public final class VerifyConnection implements Runnable {
                     result = check.isLoginSuccess(loginVerify.getUserId(), loginVerify.getUserPassword());
                     // 为登录成功的用户创建聊天线程
                     if (result != null && (Boolean) result) {
-                        System.out.println("登录成功，为该用户创建一个聊天线程");
                         new Thread(new ChatThread(loginVerify.getUserId())).start();
                     }
                 }

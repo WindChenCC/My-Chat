@@ -52,8 +52,10 @@ public final class ChatThread implements Runnable {
         DataStream dataStream = new DataStream(userSocket, userId);
         // 加入到在线人员映射里面
         ChatServer.getClientUser().put(userId, dataStream);
-        System.out.println("用户 " + userId + " 已成功登录 ,Info: " + userSocket.getInetAddress());
-        System.out.println("当前在线人数： " + ChatServer.getClientUser().size());
+        System.out.println("用户：" + userId + " 登陆成功 IP: " + userSocket.getInetAddress());
+        System.out.println("已为该用户创建线程");
+        System.out.println("MyChat在线用户：" + ChatServer.getClientUser().size());
+        System.out.println("*********************************************");
         dataStream.run();
     }
 }
