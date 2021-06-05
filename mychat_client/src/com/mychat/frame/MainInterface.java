@@ -31,7 +31,7 @@ public final class MainInterface extends JFrame {
     private JLabel textLogoLabel;
     private JButton headPortrait;
     private Box nameBox;
-    private JTextField tradesTextField;
+    private JTextField signatureTextField;
     private JTextField searchTextField;
     private ButtonGroup peopleOrGroup;
     private final User userInfo;
@@ -83,7 +83,7 @@ public final class MainInterface extends JFrame {
         upPanel.add(headPortrait);
         upPanel.add(nameBox);
         upPanel.add(signatureButton);
-        upPanel.add(tradesTextField);
+        upPanel.add(signatureTextField);
 
         midPanel.add(searchLabel);
         midPanel.add(searchButton);
@@ -181,34 +181,34 @@ public final class MainInterface extends JFrame {
         signatureButton.setForeground(Color.WHITE);
         signatureButton.setToolTipText(signature);
         // 点击签名之后的编辑文本框
-        tradesTextField = new JTextField();
-        tradesTextField.setFont(new Font("微软雅黑", Font.PLAIN, 15));
-        tradesTextField.setBounds(88, 65, 155, 23);
-        tradesTextField.setVisible(false);
+        signatureTextField = new JTextField();
+        signatureTextField.setFont(new Font("微软雅黑", Font.PLAIN, 15));
+        signatureTextField.setBounds(88, 65, 155, 23);
+        signatureTextField.setVisible(false);
         // 点击个性签名之后变为可编辑的TextField
         signatureButton.addActionListener(e -> {
             signatureButton.setVisible(false);
-            tradesTextField.setVisible(true);
+            signatureTextField.setVisible(true);
             if (signatureButton.getText().equals("编辑个性签名")) {
-                tradesTextField.setText("");
+                signatureTextField.setText("");
             } else {
-                tradesTextField.setText(signatureButton.getText());
+                signatureTextField.setText(signatureButton.getText());
             }
-            tradesTextField.requestFocus();
+            signatureTextField.requestFocus();
         });
 
         // TextField失去焦点之后变为Button并将更改后的内容传送给服务器
-        tradesTextField.addFocusListener(new FocusListener() {
+        signatureTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusLost(FocusEvent e) {
-                tradesTextField.setVisible(false);
-                if (tradesTextField.getText().equals("")) {
+                signatureTextField.setVisible(false);
+                if (signatureTextField.getText().equals("")) {
                     signatureButton.setText("编辑个性签名");
                     InteractWithServer.setMySignature(userInfo.getUserId(), "");
                 } else {
-                    signatureButton.setText(tradesTextField.getText());
+                    signatureButton.setText(signatureTextField.getText());
                     // 更新服务端数据
-                    InteractWithServer.setMySignature(userInfo.getUserId(), tradesTextField.getText());
+                    InteractWithServer.setMySignature(userInfo.getUserId(), signatureTextField.getText());
                 }
                 signatureButton.setVisible(true);
             }
@@ -217,12 +217,12 @@ public final class MainInterface extends JFrame {
             public void focusGained(FocusEvent e) {
             }
         });
-        tradesTextField.addActionListener(e -> {
-            tradesTextField.setVisible(false);
-            if (tradesTextField.getText().equals("")) {
+        signatureTextField.addActionListener(e -> {
+            signatureTextField.setVisible(false);
+            if (signatureTextField.getText().equals("")) {
                 signatureButton.setText("编辑个性签名");
             } else {
-                signatureButton.setText(tradesTextField.getText());
+                signatureButton.setText(signatureTextField.getText());
             }
             signatureButton.setVisible(true);
         });

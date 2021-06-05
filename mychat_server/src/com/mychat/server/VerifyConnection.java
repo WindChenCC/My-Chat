@@ -83,7 +83,7 @@ public final class VerifyConnection implements Runnable {
                          * res[0]：setMySignature、res[1]：myId、res[2]：newTrades
                          */
                         DataBaseConnection con = new DataBaseConnection();
-                        String sql = "UPDATE dw_user SET user_trades = '" + res[2] + "' WHERE user_id = " + res[1];
+                        String sql = "UPDATE dw_user SET user_signature = '" + res[2] + "' WHERE user_id = " + res[1];
                         con.putToDatabase(sql);
                         con.close();
                     }

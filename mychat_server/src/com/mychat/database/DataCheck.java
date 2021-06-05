@@ -100,7 +100,7 @@ public final class DataCheck {
                 String fId = resultSet.getString("myfriend");
                 String fName = resultSet.getString("user_name");
                 String fAvatar = resultSet.getString("user_avatar");
-                String fTrade = resultSet.getString("user_trades");
+                String fTrade = resultSet.getString("user_signature");
                 String fStatus = ChatServer.getClientUser().containsKey(fId) ? "在线" : "离线";
                 friends.add(new FriendsOrGroups(fId, fName, fAvatar, fTrade, fStatus));
             }
@@ -125,10 +125,10 @@ public final class DataCheck {
             while (resultSet.next()) {
                 String gId = resultSet.getString("group_id");
                 String gName = resultSet.getString("group_name");
-                String gTrades = resultSet.getString("group_trades");
+                String gSignature = resultSet.getString("group_signature");
                 String gAvatar = resultSet.getString("group_avatar");
                 String gStatus = resultSet.getString("user_id");
-                groups.add(new FriendsOrGroups(gId, gName, gAvatar, gTrades, gStatus));
+                groups.add(new FriendsOrGroups(gId, gName, gAvatar, gSignature, gStatus));
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -167,7 +167,7 @@ public final class DataCheck {
                 userSex = resultSet.getString("user_sex");
                 userBirthday = resultSet.getString("user_birthday");
                 userProfile = resultSet.getString("user_avatar");
-                userSignature = resultSet.getString("user_trades");
+                userSignature = resultSet.getString("user_signature");
                 userRegistertime = resultSet.getString("user_registertime");
             }
             resultSet.close();
