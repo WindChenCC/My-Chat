@@ -43,16 +43,16 @@ public class UserInfo implements Serializable {
     /**
      * 用户好友列表
      */
-    protected Vector<FriendsOrGroups> friends = new Vector<>();
+    protected Vector<FriendsGroups> friends = new Vector<>();
     /**
      * 用户群列表
      */
-    protected Vector<FriendsOrGroups> groups = new Vector<>();
+    protected Vector<FriendsGroups> groups = new Vector<>();
 
     /**
-     * 对群或者一个好友所记录的信息是一个FriendsOrGroups对象，对象中包含它的id,name,profile,signature,status.
+     * 对群或者一个好友所记录的信息是一个FriendsGroups对象，对象中包含它的id,name,profile,signature,status.
      */
-    public static class FriendsOrGroups implements Serializable {
+    public static class FriendsGroups implements Serializable {
         private static final long serialVersionUID = -1855195980029629286L;
         private final String id;
         private final String name;
@@ -63,7 +63,7 @@ public class UserInfo implements Serializable {
         /**
          * 创建一个群信息对象或好友信息对象
          */
-        public FriendsOrGroups(String id, String name, String profile, String signature, String status) {
+        public FriendsGroups(String id, String name, String profile, String signature, String status) {
             this.id = id;
             this.name = name;
             this.profile = profile;

@@ -339,7 +339,7 @@ public final class MainInterface extends JFrame {
         friendButtonGroup = new ButtonGroup();
 
         for (int i = 0; i < friendsNumber; i++) {
-            UserInfo.FriendsOrGroups userFriend = userInfo.getFriends().get(i);
+            UserInfo.FriendsGroups userFriend = userInfo.getFriends().get(i);
             String fProfile = userFriend.getProfile();
             String fName = userFriend.getName();
             String fSignature = userFriend.getSignature();
@@ -384,7 +384,7 @@ public final class MainInterface extends JFrame {
         groupPanel.setBackground(ColorInfo.NORMAL_COLOR);
         groupButtonGroup = new ButtonGroup();
         for (int j = 0; j < groupsNumber; j++) {
-            UserInfo.FriendsOrGroups userGroup = userInfo.getGroups().get(j);
+            UserInfo.FriendsGroups userGroup = userInfo.getGroups().get(j);
             String gProfile = userGroup.getProfile(), gName = userGroup.getName(), gSignature = userGroup.getSignature(),
                     gid = userGroup.getId();
             group.put(gid, new GroupModel(gProfile, gName, gSignature, gid, "./Data/Profile/Group/"));

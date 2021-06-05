@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import com.mychat.config.UserInfo;
-import com.mychat.config.UserInfo.FriendsOrGroups;
+import com.mychat.config.UserInfo.FriendsGroups;
 import com.mychat.server.ChatServer;
 import com.mychat.user.User;
 
@@ -57,7 +57,7 @@ public final class DataQuery {
      * @return Vector<String> 返回群成员列表Vector数组
      */
     public static Vector<String> getGroupMember(String groupId) {
-        String sqlString = "select user_id from dw_usergroup where group_id = " + groupId;
+        String sqlString = "select user_id from view_usergroup where group_id = " + groupId;
         return getMemberFromId(sqlString, "user_id");
     }
 
@@ -88,10 +88,10 @@ public final class DataQuery {
     /**
      * @param userId  用户ID
      * @param dataCon 与数据库连接对象
-     * @return Vector<FriendsOrGroups> 返回最终获取的好友信息列表Vector数组
+     * @return Vector<FriendsGroups> 返回最终获取的好友信息列表Vector数组
      */
-    public Vector<FriendsOrGroups> getUserFriends(String userId, DataBaseConnection dataCon) {
-        Vector<FriendsOrGroups> friends = new Vector<>();
+    public Vector<FriendsGroups> getUserFriends(String userId, DataBaseConnection dataCon) {
+        Vector<FriendsGroups> friends = new Vector<>();
         // 查询好友信息
         String sqlString = "select * from view_useruser where myself = " + userId;
         ResultSet resultSet = dataCon.getFromDatabase(sqlString);
@@ -102,7 +102,7 @@ public final class DataQuery {
                 String fProfile = resultSet.getString("user_profile");
                 String fSignature = resultSet.getString("user_signature");
                 String fStatus = ChatServer.getClientUser().containsKey(fId) ? "在线" : "离线";
-                friends.add(new FriendsOrGroups(fId, fName, fProfile, fSignature, fStatus));
+                friends.add(new FriendsGroups(fId, fName, fProfile, fSignature, fStatus));
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -114,10 +114,10 @@ public final class DataQuery {
     /**
      * @param userId  用户ID
      * @param dataCon 与数据库连接对象
-     * @return Vector<FriendsOrGroups> 返回最终获取的群信息列表Vector数组
+     * @return Vector<FriendsGroups> 返回最终获取的群信息列表Vector数组
      */
-    public Vector<FriendsOrGroups> getUserGroups(String userId, DataBaseConnection dataCon) {
-        Vector<FriendsOrGroups> groups = new Vector<>();
+    public Vector<FriendsGroups> getUserGroups(String userId, DataBaseConnection dataCon) {
+        Vector<FriendsGroups> groups = new Vector<>();
         // 查询群信息
         String sqlString = "select * from view_usergroup where user_id = " + userId;
         ResultSet resultSet = dataCon.getFromDatabase(sqlString);
@@ -128,7 +128,7 @@ public final class DataQuery {
                 String gSignature = resultSet.getString("group_signature");
                 String gProfile = resultSet.getString("group_profile");
                 String gStatus = resultSet.getString("user_id");
-                groups.add(new FriendsOrGroups(gId, gName, gProfile, gSignature, gStatus));
+                groups.add(new FriendsGroups(gId, gName, gProfile, gSignature, gStatus));
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -151,8 +151,8 @@ public final class DataQuery {
         String userProfile = "";
         String userSignature = "";
         String userRegistertime = "";
-        Vector<FriendsOrGroups> friends;
-        Vector<FriendsOrGroups> groups;
+        Vector<FriendsGroups> friends;
+        Vector<FriendsGroups> groups;
         UserInfo userInfo = null;
         try {
             // 创建数据库连接

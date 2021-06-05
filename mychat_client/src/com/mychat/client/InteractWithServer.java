@@ -15,9 +15,9 @@ import com.mychat.user.User;
  */
 public final class InteractWithServer {
     /**
-     * 与服务器验证端口建立连接，并使用对象流传输数据
-     * 如果与服务器建立连接失败或创建对象输入输出流失败产生IOException.
-     * 如果对象输入流读取异常产生ClassNotFoundException.
+     * 与服务器验证端口建立连接，并使用对象流传输数据<br>
+     * 如果与服务器建立连接失败或创建对象输入输出流失败产生IOException.<br>
+     * 如果对象输入流读取异常产生ClassNotFoundException.<br>
      *
      * @param obj 发送给服务器的对象
      * @return result 接收服务器返回的对象信息
@@ -74,14 +74,14 @@ public final class InteractWithServer {
     /**
      * 通过交互双方id获取历史聊天记录
      *
-     * @param fromid  交互方1
+     * @param fromId  交互方1
      * @param toId    交互方2
      * @param isGroup 是否为群聊天记录
      * @return Vector<String> 返回聊天记录信息的Vector数组
      */
     @SuppressWarnings("unchecked")
-    public static Vector<String> getChatRecord(String fromid, String toId, boolean isGroup) {
-        String sendString = "getChatRecord```" + fromid + "```" + toId + "```" + isGroup;
+    public static Vector<String> getChatRecord(String fromId, String toId, boolean isGroup) {
+        String sendString = "getChatRecord```" + fromId + "```" + toId + "```" + isGroup;
         return (Vector<String>) postToServer(sendString);
     }
 

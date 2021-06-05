@@ -140,7 +140,7 @@ class LoginListener implements ActionListener {
                             }
                             out.close();
                         } catch (Exception e1) {
-                            System.out.println("ListenterClass/actionPerformed Error " + e1);
+                            System.out.println("ListenerClass/actionPerformed Error " + e1);
                         }
                     }
                     now.dispose();

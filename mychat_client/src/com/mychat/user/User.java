@@ -14,8 +14,8 @@ public final class User extends UserInfo {
 	 * 初始化用户信息内容
 	 */
 	public User(String userId, String userName, String userEmail, String userSex, String userBirthday,
-			String userProfile, String userSignature, String userRegistertime, Vector<FriendsOrGroups> friends,
-			Vector<FriendsOrGroups> groups) {
+			String userProfile, String userSignature, String userRegistertime, Vector<FriendsGroups> friends,
+			Vector<FriendsGroups> groups) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
@@ -96,7 +96,7 @@ public final class User extends UserInfo {
 	 * 获取用户好友列表ID
 	 * @return friends String对象
 	 */
-	public Vector<FriendsOrGroups> getFriends() {
+	public Vector<FriendsGroups> getFriends() {
 		return friends;
 	}
 
@@ -104,7 +104,7 @@ public final class User extends UserInfo {
 	 * 获取用户群列表ID
 	 * @return groups String对象
 	 */
-	public Vector<FriendsOrGroups> getGroups() {
+	public Vector<FriendsGroups> getGroups() {
 		return groups;
 	}
 }

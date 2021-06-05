@@ -41,17 +41,18 @@ public final class GetProfile {
         in.close();
     }
 
-    public static ImageIcon getProfileImage(String id, String relativePath, String profileUrl) {
+    public static ImageIcon getProfileImage(String id, String sourcePath, String profileUrl) {
         ImageIcon profile;
         try {
-            String path = relativePath + id + ".jpg";
+            String path = sourcePath + id + ".jpg";
             if (!new File(path).exists()) {
-                download(profileUrl, id + ".jpg", relativePath);
+                download(profileUrl, id + ".jpg", sourcePath);
             }
             profile = new ImageIcon(path);
         } catch (Exception e) {
             profile = new ImageIcon("./resource/default_profile.jpg");
-            System.out.println("获取头像失败，改为默认头像：" + profileUrl);
+            System.out.println("URL: " + profileUrl);
+            System.out.println("用户：" + id + " 获取头像失败，改为默认头像");
             System.out.println(" *************************************");
         }
         return profile;
