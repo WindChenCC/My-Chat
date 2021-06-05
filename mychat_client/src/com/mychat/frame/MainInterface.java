@@ -247,7 +247,7 @@ public final class MainInterface extends JFrame {
         searchButton.setBounds(23, 0, 277, 26);
         searchButton.setFont(new Font("微软雅黑", Font.PLAIN, 15));
         searchButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        searchButton.setForeground(new Color(186,235,242));
+        searchButton.setForeground(new Color(186, 235, 242));
 
         searchTextField = new JTextField();
         searchTextField.setBounds(26, 1, 277, 25);

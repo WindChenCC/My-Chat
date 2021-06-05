@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Vector;
 
 import com.mychat.database.DataBaseConnection;
-import com.mychat.database.DataCheck;
+import com.mychat.database.DataQuery;
 
 /**
  * 客户成功登录之后会接入聊天端口，在这里主要处理客户端发送的消息，并将其转发给目标用户或群
@@ -41,7 +41,7 @@ public final class DataStream implements Runnable {
     public DataStream(Socket clientSocket, String userId) {
         this.userId = userId;
         con = new DataBaseConnection();
-        friends = DataCheck.getFriendMember(userId);
+        friends = DataQuery.getFriendMember(userId);
         try {
             in = new DataInputStream(clientSocket.getInputStream());
             out = new DataOutputStream(clientSocket.getOutputStream());
@@ -94,7 +94,7 @@ public final class DataStream implements Runnable {
                 }
                 printToDatabase(res[1], res[2], res[3], false);
             } else if (type.equals("toGroup")) {
-                Vector<String> groups = DataCheck.getGroupMember(toId);
+                Vector<String> groups = DataQuery.getGroupMember(toId);
                 for (String group : groups) {
                     if (!group.equals(userId)
                             && ChatServer.getClientUser().containsKey(group)) {

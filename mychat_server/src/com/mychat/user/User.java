@@ -4,9 +4,9 @@
 
 package com.mychat.user;
 
-import java.util.Vector;
-
 import com.mychat.config.UserInfo;
+
+import java.util.Vector;
 
 public final class User extends UserInfo {
 
@@ -15,13 +15,13 @@ public final class User extends UserInfo {
     /**
      * 初始化用户信息内容
      */
-    public User(String userId, String userName, String userEmail, String userSex, String userBirthday,
+    public User(String userId, String userName, String userSex, String userBirthday,
                 String userProfile, String userSignature, String userRegisterTime, Vector<FriendsOrGroups> friends,
                 Vector<FriendsOrGroups> groups) {
         this.userId = userId;
         this.userName = userName;
 
-        this.userEmail = userEmail;
+        this.userEmail = userId + "@mychat.com";
         this.userSex = userSex;
         this.userBirthday = userBirthday;
         this.userProfile = userProfile;

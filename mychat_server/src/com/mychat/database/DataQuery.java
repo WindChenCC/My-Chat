@@ -12,7 +12,7 @@ import com.mychat.user.User;
 /**
  * 针对数据库的一些查询与更新函数，并对每种操作提供相应的SQL语句
  */
-public final class DataCheck {
+public final class DataQuery {
     /**
      * 通过ID与SQL获取最终结果集
      *
@@ -132,7 +132,7 @@ public final class DataCheck {
             }
             resultSet.close();
         } catch (SQLException e) {
-            System.out.println("DataCheck 获取好友群失败 " + e.getMessage());
+            System.out.println("DataQuery 获取好友群失败 " + e.getMessage());
         }
         return groups;
     }
@@ -146,7 +146,6 @@ public final class DataCheck {
     public UserInfo getUserInfo(String userId) {
         // 用户个人信息
         String userName = "";
-        String userEmail = "";
         String userSex = "";
         String userBirthday = "";
         String userProfile = "";
@@ -163,7 +162,6 @@ public final class DataCheck {
             ResultSet resultSet = dataCon.getFromDatabase(sqlString);
             while (resultSet.next()) {
                 userName = resultSet.getString("user_name");
-                userEmail = resultSet.getString("user_email");
                 userSex = resultSet.getString("user_sex");
                 userBirthday = resultSet.getString("user_birthday");
                 userProfile = resultSet.getString("user_Profile");
@@ -177,7 +175,7 @@ public final class DataCheck {
             // 关闭数据库连接
             dataCon.close();
             // 创建对象
-            userInfo = new User(userId, userName, userEmail, userSex, userBirthday, userProfile, userSignature,
+            userInfo = new User(userId, userName, userSex, userBirthday, userProfile, userSignature,
                     userRegistertime, friends, groups);
         } catch (SQLException e) {
             System.out.println("获取用户信息失败：" + e.getMessage());

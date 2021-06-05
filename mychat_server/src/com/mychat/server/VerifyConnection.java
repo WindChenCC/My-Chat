@@ -7,7 +7,7 @@ import java.net.Socket;
 
 import com.mychat.config.ChatVerify;
 import com.mychat.database.DataBaseConnection;
-import com.mychat.database.DataCheck;
+import com.mychat.database.DataQuery;
 
 /**
  * 主要接收客户端发送来的验证请求(登录验证、获取个人资料、获取好友列表等)，然后并处理该请求返回处理结果
@@ -33,7 +33,7 @@ public final class VerifyConnection implements Runnable {
      */
     public Object switchCon(Object obj) {
         // 创建 Data_Check 来完成这些工作
-        DataCheck check = new DataCheck();
+        DataQuery check = new DataQuery();
         // 获取对象类型
         String objName = obj.getClass().getSimpleName();
         // 返回结果对象
@@ -74,7 +74,7 @@ public final class VerifyConnection implements Runnable {
                     }
                 } else if (field.startsWith("getGroupMembers")) {
                     field = field.replace("getGroupMembers", "");
-                    result = DataCheck.getGroupMember(field);
+                    result = DataQuery.getGroupMember(field);
                 } else if (field.startsWith("setMySignature")) {
                     // 替换前缀
                     String[] res = field.split("```", 3);
