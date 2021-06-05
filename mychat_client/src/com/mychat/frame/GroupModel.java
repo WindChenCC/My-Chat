@@ -67,8 +67,8 @@ public class GroupModel extends JRadioButton {
 
     public void setfProfile(String fProfile) {
         this.fProfile = fProfile;
-        fProfileLabel.setIcon(new ImageIcon((GetProfile.getProfileImage(fid, "./Data/Profile/Group/", fProfile)).getImage()
-                .getScaledInstance(41, 41, Image.SCALE_DEFAULT)));
+        fProfileLabel.setIcon(new ImageIcon((GetProfile.getProfileImage(fid, "./Data/Profile/Group/",
+                fProfile)).getImage().getScaledInstance(41, 41, Image.SCALE_DEFAULT)));
     }
 
     public void setfName(String fName) {

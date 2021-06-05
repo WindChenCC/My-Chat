@@ -57,7 +57,8 @@ public final class ChatExecute {
                 if (model.containsKey(toId)) {
                     // 聊天面板显示用户昵称
                     String fromString = MainInterface.getFriend().containsKey(fromId)
-                            ? MainInterface.getFriend().get(fromId).getfName() : ("陌生人:" + fromId);
+                            ? MainInterface.getFriend().get(fromId).getfName() :
+                            MainInterface.getGroupMembers().get(fromId).getName();
                     model.get(toId).addMessage(fromId, fromString, res[0], message, false);
                 }
             }

@@ -74,7 +74,7 @@ public final class VerifyConnection implements Runnable {
                     }
                 } else if (field.startsWith("getGroupMembers")) {
                     field = field.replace("getGroupMembers", "");
-                    result = DataQuery.getGroupMember(field);
+                    result = DataQuery.getGroupMemberId(field);
                 } else if (field.startsWith("setMySignature")) {
                     // 替换前缀
                     String[] res = field.split("```", 3);

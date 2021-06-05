@@ -1,13 +1,13 @@
 package com.mychat.database;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
-
 import com.mychat.config.UserInfo;
 import com.mychat.config.UserInfo.FriendsGroups;
 import com.mychat.server.ChatServer;
 import com.mychat.user.User;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
 
 /**
  * 针对数据库的一些查询与更新函数，并对每种操作提供相应的SQL语句
@@ -56,9 +56,37 @@ public final class DataQuery {
      * @param groupId 群ID
      * @return Vector<String> 返回群成员列表Vector数组
      */
-    public static Vector<String> getGroupMember(String groupId) {
-        String sqlString = "select user_id from view_usergroup where group_id = " + groupId;
+    public static Vector<String> getGroupMemberId(String groupId) {
+        String sqlString = "select user_id from dw_usergroup where group_id = " + groupId;
         return getMemberFromId(sqlString, "user_id");
+    }
+
+    /**
+     * 查询群成员 Id name profile
+     */
+    public static Vector<FriendsGroups> getGroupMembers(Vector<FriendsGroups> groups, DataBaseConnection dataCon) {
+        if (groups.isEmpty()) {
+            return null;
+        }
+        Vector<FriendsGroups> members = new Vector<>();
+        StringBuilder sqlString = new StringBuilder("select distinct user_id, user_name, user_profile " +
+                "from view_usergroup where group_id =").append(groups.get(0).getId());
+        for (int i = 1; i < groups.size(); ++i) {
+            sqlString.append(" or group_id = ").append(groups.get(i).getId());
+        }
+        ResultSet resultSet = dataCon.getFromDatabase(sqlString.toString());
+        try {
+            while (resultSet.next()) {
+                String memberId = resultSet.getString("user_id");
+                String memberName = resultSet.getString("user_name");
+                String memberProfile = resultSet.getString("user_profile");
+                members.add(new FriendsGroups(memberId, memberName, memberProfile, null, null));
+            }
+            resultSet.close();
+        } catch (SQLException e) {
+            System.out.println("DataQuery 获取群成员失败 " + e.getMessage());
+        }
+        return members;
     }
 
     /**
@@ -153,6 +181,7 @@ public final class DataQuery {
         String userRegistertime = "";
         Vector<FriendsGroups> friends;
         Vector<FriendsGroups> groups;
+        Vector<FriendsGroups> groupMembers;
         UserInfo userInfo = null;
         try {
             // 创建数据库连接
@@ -172,11 +201,12 @@ public final class DataQuery {
             // 查询好友列表信息与群列表信息
             friends = getUserFriends(userId, dataCon);
             groups = getUserGroups(userId, dataCon);
+            groupMembers = getGroupMembers(groups, dataCon);
             // 关闭数据库连接
             dataCon.close();
             // 创建对象
             userInfo = new User(userId, userName, userSex, userBirthday, userProfile, userSignature,
-                    userRegistertime, friends, groups);
+                    userRegistertime, friends, groups, groupMembers);
         } catch (SQLException e) {
             System.out.println("获取用户信息失败：" + e.getMessage());
         }
@@ -197,10 +227,11 @@ public final class DataQuery {
         DataBaseConnection dataCon = new DataBaseConnection();
         String sqlString;
         if (isGroup.equals("true")) {
-            sqlString = "select gchat_uid fromid,gchat_gid toid,gchat_message message,gchat_datetime timer from dw_groupchat where gchat_gid = "
-                    + toId;
+            sqlString = "select gchat_uid fromid,gchat_gid toid,gchat_message message,gchat_datetime timer " +
+                    "from dw_groupchat where gchat_gid = " + toId;
         } else {
-            sqlString = "select uchat_fromid fromid,uchat_toid toid,uchat_message message,uchat_datetime timer from dw_userchat where (uchat_fromid ="
+            sqlString = "select uchat_fromid fromid,uchat_toid toid,uchat_message message,uchat_datetime timer " +
+                    "from dw_userchat where (uchat_fromid ="
                     + fromId + " and uchat_toid = " + toId + ") or (uchat_fromid = " + toId + " and uchat_toid = "
                     + fromId + ")";
         }

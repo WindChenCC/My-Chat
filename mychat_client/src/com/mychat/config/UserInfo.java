@@ -48,6 +48,10 @@ public class UserInfo implements Serializable {
      * 用户群列表
      */
     protected Vector<FriendsGroups> groups = new Vector<>();
+    /**
+     * 用户群聊成员信息
+     */
+    protected Vector<FriendsGroups> groupMembers = new Vector<>();
 
     /**
      * 对群或者一个好友所记录的信息是一个FriendsGroups对象，对象中包含它的id,name,profile,signature,status.

@@ -15,7 +15,7 @@ public final class User extends UserInfo {
 	 */
 	public User(String userId, String userName, String userEmail, String userSex, String userBirthday,
 			String userProfile, String userSignature, String userRegistertime, Vector<FriendsGroups> friends,
-			Vector<FriendsGroups> groups) {
+			Vector<FriendsGroups> groups, Vector<FriendsGroups> groupMembers) {
 		this.userId = userId;
 		this.userName = userName;
 		this.userEmail = userEmail;
@@ -26,6 +26,7 @@ public final class User extends UserInfo {
 		this.userRegisterTime = userRegistertime;
 		this.friends = friends;
 		this.groups = groups;
+		this.groupMembers = groupMembers;
 	}
 
 	/**
@@ -107,4 +108,9 @@ public final class User extends UserInfo {
 	public Vector<FriendsGroups> getGroups() {
 		return groups;
 	}
+
+	/**
+	 * 获取群成员信息
+	 */
+	public Vector<FriendsGroups> getGroupMembers() {return groupMembers;}
 }

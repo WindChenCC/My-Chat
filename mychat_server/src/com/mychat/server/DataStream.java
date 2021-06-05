@@ -96,7 +96,7 @@ public final class DataStream implements Runnable {
                 }
                 printToDatabase(res[1], res[2], res[3], false);
             } else if (type.equals("toGroup")) {
-                Vector<String> groups = DataQuery.getGroupMember(toId);
+                Vector<String> groups = DataQuery.getGroupMemberId(toId);
                 for (String group : groups) {
                     if (!group.equals(userId)
                             && ChatServer.getClientUser().containsKey(group)) {

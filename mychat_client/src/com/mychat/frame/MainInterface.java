@@ -42,17 +42,22 @@ public final class MainInterface extends JFrame {
     private static final HashMap<String, GroupModel> group;
     private static final HashMap<String, ChatWithFriend> withFriend;
     private static final HashMap<String, ChatWithFriend> withGroup;
+    private static final HashMap<String, UserInfo.FriendsGroups> groupMembers;
 
     static {
         friend = new HashMap<>();
         group = new HashMap<>();
         withFriend = new HashMap<>();
         withGroup = new HashMap<>();
+        groupMembers = new HashMap<>();
     }
 
     public MainInterface(String userId) {
         // 获取用户信息
         userInfo = InteractWithServer.getUserInfo(userId);
+        for (UserInfo.FriendsGroups i : userInfo.getGroupMembers()) {
+            groupMembers.put(i.getId(), i);
+        }
         // 调试使用
         System.out.println("************** 个人信息 **************");
         System.out.println("ID：" + userInfo.getUserId());
@@ -458,6 +463,10 @@ public final class MainInterface extends JFrame {
 
     public static HashMap<String, ChatWithFriend> getGroupChat() {
         return withGroup;
+    }
+
+    public static  HashMap<String, UserInfo.FriendsGroups> getGroupMembers() {
+        return groupMembers;
     }
 
 }

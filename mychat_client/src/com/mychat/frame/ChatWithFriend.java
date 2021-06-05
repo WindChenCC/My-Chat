@@ -29,7 +29,6 @@ public final class ChatWithFriend extends JFrame {
     private JScrollPane showPanel, inputScroll, groupMemberScrollPanel;
     private JTextArea inputText;
     private final Image profilePic;
-    private int messageNum = 0;
     private final boolean isGroup;
 
     public ChatWithFriend(String mid, String mName, String fid, String friendProfileString, String friendNameString,
@@ -158,7 +157,7 @@ public final class ChatWithFriend extends JFrame {
 //            }
             String fromName = resource[1].equals(mid) ? mName
                     : (MainInterface.getFriend().containsKey(resource[1]) ? MainInterface.getFriend().get(resource[1]).getfName()
-                    : ("陌生人:" + resource[1]));
+                    : MainInterface.getGroupMembers().get(resource[1]).getName());
             if (resource.length == 4) {
                 addMessage(resource[1], fromName, resource[0], resource[3], true);
             }
@@ -290,12 +289,15 @@ public final class ChatWithFriend extends JFrame {
                 memberPanel.setBounds(10, 40 * num++, 170, 30);
 
                 ImageIcon icon = new ImageIcon("./resource/default_profile.jpg");
-                String content = "陌生人(" + i + ")";
+                String content = null;
                 if (MainInterface.getFriend().containsKey(i)) {
                     icon = GetProfile.getProfileImage(i, "./Data/Profile/User/",
                             MainInterface.getFriend().get(i).getfProfile());
-                    content = MainInterface.getFriend().get(i).getfName() + "("
-                            + MainInterface.getFriend().get(i).getFid() + ")";
+                    content = MainInterface.getFriend().get(i).getfName() + "(" + i + ")";
+                } else {
+                    icon = GetProfile.getProfileImage(i, "./Data/Profile/User/",
+                            MainInterface.getGroupMembers().get(i).getProfile());
+                    content = MainInterface.getGroupMembers().get(i).getName() + "(" + i + ")";
                 }
                 icon = new ImageIcon(icon.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
                 JLabel memberInfoLabel = new JLabel(content);
@@ -307,9 +309,6 @@ public final class ChatWithFriend extends JFrame {
                 memberPanel.add(memberInfoLabel);
                 groupMemberPanel.add(memberPanel);
             }
-
-
-
         } else {
             close.setBounds(580, 0, 40, 40);
             maximize.setBounds(540, 0, 40, 40);
