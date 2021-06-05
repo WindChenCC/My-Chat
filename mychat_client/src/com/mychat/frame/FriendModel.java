@@ -14,8 +14,8 @@ public class FriendModel extends GroupModel {
     private final JLabel fOnlineLabel;
     private static final long serialVersionUID = 1L;
 
-    public FriendModel(String fAvatar, String fName, String fTrades, String fid, String fOnline) {
-        super(fAvatar, fName, fTrades, fid, "./Data/Avatar/User/");
+    public FriendModel(String fProfile, String fName, String fSignature, String fid, String fOnline) {
+        super(fProfile, fName, fSignature, fid, "./Data/Profile/User/");
         this.fOnline = fOnline;
         fOnlineLabel = new JLabel(fOnline);
         fOnlineLabel.setBounds(232, 14, 42, 22);

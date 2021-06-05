@@ -13,18 +13,18 @@ import javax.swing.JRadioButton;
  */
 public class GroupModel extends JRadioButton {
     private static final long serialVersionUID = 1L;
-    private String fAvatar;
+    private String fProfile;
     private String fName;
-    private String fTrades;
+    private String fSignature;
     private final String fid;
-    private final JLabel fAvatarLabel;
+    private final JLabel fProfileLabel;
     private final JLabel fNameLabel;
-    private final JLabel fTradesLabel;
+    private final JLabel fSignatureLabel;
 
-    public GroupModel(String fAvatar, String fName, String fTrades, String fid, String avatarPath) {
-        this.fAvatar = fAvatar;
+    public GroupModel(String fProfile, String fName, String fSignature, String fid, String profilePath) {
+        this.fProfile = fProfile;
         this.fName = fName;
-        this.fTrades = fTrades;
+        this.fSignature = fSignature;
         this.fid = fid;
         this.setMargin(new Insets(0, 0, 0, 0));
         this.setIcon(new ImageIcon("./resource/mainpanel/friend_normal.png"));
@@ -32,42 +32,42 @@ public class GroupModel extends JRadioButton {
         this.setPressedIcon(new ImageIcon("./resource/mainpanel/friend_selected.png"));
         this.setSelectedIcon(new ImageIcon("./resource/mainpanel/friend_selected.png"));
         this.setLayout(null);
-        fAvatarLabel = new JLabel();
-        fAvatarLabel.setIcon(new ImageIcon((GetProfile.getAvatarImage(fid, avatarPath, fAvatar)).getImage()
+        fProfileLabel = new JLabel();
+        fProfileLabel.setIcon(new ImageIcon((GetProfile.getProfileImage(fid, profilePath, fProfile)).getImage()
                 .getScaledInstance(41, 41, Image.SCALE_DEFAULT)));
-        fAvatarLabel.setBounds(8, 4, 41, 41);
-        this.add(fAvatarLabel);
+        fProfileLabel.setBounds(8, 4, 41, 41);
+        this.add(fProfileLabel);
         // 名字显示
         fNameLabel = new JLabel(fName);
         fNameLabel.setFont(new Font("Microsoft YaHei UI", Font.PLAIN, 18));
         fNameLabel.setBounds(60, 14, 176, 22);
         this.add(fNameLabel);
 
-        fTradesLabel = new JLabel(fTrades);
-        fTradesLabel.setBounds(56, 56, 218, 19);
-        fTradesLabel.setToolTipText(fTrades);
-        this.add(fTradesLabel);
+        fSignatureLabel = new JLabel(fSignature);
+        fSignatureLabel.setBounds(56, 56, 218, 19);
+        fSignatureLabel.setToolTipText(fSignature);
+        this.add(fSignatureLabel);
     }
 
-    public String getfAvatar() {
-        return fAvatar;
+    public String getfProfile() {
+        return fProfile;
     }
 
     public String getfName() {
         return fName;
     }
 
-    public String getfTrades() {
-        return fTrades;
+    public String getfSignature() {
+        return fSignature;
     }
 
     public String getFid() {
         return fid;
     }
 
-    public void setfAvatar(String fAvatar) {
-        this.fAvatar = fAvatar;
-        fAvatarLabel.setIcon(new ImageIcon((GetProfile.getAvatarImage(fid, "./Data/Avatar/Group/", fAvatar)).getImage()
+    public void setfProfile(String fProfile) {
+        this.fProfile = fProfile;
+        fProfileLabel.setIcon(new ImageIcon((GetProfile.getProfileImage(fid, "./Data/Profile/Group/", fProfile)).getImage()
                 .getScaledInstance(41, 41, Image.SCALE_DEFAULT)));
     }
 
@@ -76,8 +76,8 @@ public class GroupModel extends JRadioButton {
         fNameLabel.setText(fName);
     }
 
-    public void setfTrades(String fTrades) {
-        this.fTrades = fTrades;
-        fTradesLabel.setText(fTrades);
+    public void setfSignature(String fSignature) {
+        this.fSignature = fSignature;
+        fSignatureLabel.setText(fSignature);
     }
 }

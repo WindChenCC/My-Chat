@@ -80,7 +80,9 @@ public final class VerifyConnection implements Runnable {
                     String[] res = field.split("```", 3);
                     if (res.length == 3) {
                         /*
-                         * res[0]：setMySignature、res[1]：myId、res[2]：newTrades
+                         * res[0]：setMySignature
+                         * res[1]：myId
+                         * res[2]：newSignature
                          */
                         DataBaseConnection con = new DataBaseConnection();
                         String sql = "UPDATE dw_user SET user_signature = '" + res[2] + "' WHERE user_id = " + res[1];

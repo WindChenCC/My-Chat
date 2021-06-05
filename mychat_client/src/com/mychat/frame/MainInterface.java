@@ -60,8 +60,8 @@ public final class MainInterface extends JFrame {
         System.out.println("Email：" + userInfo.getUserEmail());
         System.out.println("性别：" + userInfo.getUserSex());
         System.out.println("生日：" + userInfo.getUserBirthday());
-        System.out.println("头像：" + userInfo.getUserAvatar());
-        System.out.println("个性签名：" + userInfo.getUserTrades());
+        System.out.println("头像：" + userInfo.getUserProfile());
+        System.out.println("个性签名：" + userInfo.getUserSignature());
         System.out.println("注册时间：" + userInfo.getUserRegistertime());
         System.out.print("好友列表 : ");
         for (int i = 0; i < userInfo.getFriends().size(); i++) {
@@ -151,8 +151,8 @@ public final class MainInterface extends JFrame {
         headPortrait = new JButton();
         headPortrait.setBounds(15, 35, 65, 65);
         headPortrait.setVisible(true);
-        Image userProfile = (GetProfile.getAvatarImage(userInfo.getUserId(), "./Data/Avatar/User/",
-                userInfo.getUserAvatar())).getImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT);
+        Image userProfile = (GetProfile.getProfileImage(userInfo.getUserId(), "./Data/Profile/User/",
+                userInfo.getUserProfile())).getImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT);
         headPortrait.setIcon(new ImageIcon(userProfile));
 
         nameBox = Box.createHorizontalBox();
@@ -171,7 +171,7 @@ public final class MainInterface extends JFrame {
         signatureButton.setBounds(88, 65, 155, 23);
         signatureButton.setContentAreaFilled(false);
         signatureButton.setBorderPainted(false);
-        String signature = userInfo.getUserTrades();
+        String signature = userInfo.getUserSignature();
 
         if (signature.equals("")) {
             signature = "编辑个性签名";
@@ -349,12 +349,12 @@ public final class MainInterface extends JFrame {
 
         for (int i = 0; i < friendsNumber; i++) {
             UserInfo.FriendsOrGroups userFriend = userInfo.getFriends().get(i);
-            String fAvatar = userFriend.getAvatar();
+            String fProfile = userFriend.getProfile();
             String fName = userFriend.getName();
-            String fTrades = userFriend.getTrades();
+            String fSignature = userFriend.getSignature();
             String fid = userFriend.getId();
             String fOnline = userFriend.getStatus();
-            friend.put(fid, new FriendModel(fAvatar, fName, fTrades, fid, fOnline));
+            friend.put(fid, new FriendModel(fProfile, fName, fSignature, fid, fOnline));
             friend.get(fid).setBounds(0, i * 51, 300, 51);
             friend.get(fid).addMouseListener(new MouseListener() {
                 @Override
@@ -377,7 +377,7 @@ public final class MainInterface extends JFrame {
                 public void mouseClicked(MouseEvent e) {
                     if (e.getClickCount() == 2) {
                         withFriend.put(fid, new ChatWithFriend(userInfo.getUserId(), userInfo.getUserName(), fid,
-                                fAvatar, fName, fTrades, false));
+                                fProfile, fName, fSignature, false));
                     }
                 }
             });
@@ -394,9 +394,9 @@ public final class MainInterface extends JFrame {
         groupButtonGroup = new ButtonGroup();
         for (int j = 0; j < groupsNumber; j++) {
             UserInfo.FriendsOrGroups userGroup = userInfo.getGroups().get(j);
-            String gAvatar = userGroup.getAvatar(), gName = userGroup.getName(), gTrades = userGroup.getTrades(),
+            String gProfile = userGroup.getProfile(), gName = userGroup.getName(), gSignature = userGroup.getSignature(),
                     gid = userGroup.getId();
-            group.put(gid, new GroupModel(gAvatar, gName, gTrades, gid, "./Data/Avatar/Group/"));
+            group.put(gid, new GroupModel(gProfile, gName, gSignature, gid, "./Data/Profile/Group/"));
             group.get(gid).setBounds(0, j * 51, 300, 51);
             group.get(gid).addMouseListener(new MouseListener() {
                 @Override
@@ -419,7 +419,7 @@ public final class MainInterface extends JFrame {
                 public void mouseClicked(MouseEvent e) {
                     if (e.getClickCount() == 2) {
                         withGroup.put(gid, new ChatWithFriend(userInfo.getUserId(), userInfo.getUserName(), gid,
-                                gAvatar, gName, gTrades, true));
+                                gProfile, gName, gSignature, true));
                     }
                 }
             });

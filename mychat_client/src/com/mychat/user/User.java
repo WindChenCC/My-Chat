@@ -72,7 +72,7 @@ public final class User extends UserInfo {
 	 * 获取用户头像链接(url)
 	 * @return userProfile String对象
 	 */
-	public String getUserAvatar() {
+	public String getUserProfile() {
 		return userProfile;
 	}
 
@@ -80,7 +80,7 @@ public final class User extends UserInfo {
 	 *  获取用户个性签名
 	 * @return userSignature String对象
 	 */
-	public String getUserTrades() {
+	public String getUserSignature() {
 		return userSignature;
 	}
 

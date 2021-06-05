@@ -50,23 +50,23 @@ public class UserInfo implements Serializable {
     protected Vector<FriendsOrGroups> groups = new Vector<>();
 
     /**
-     * 对群或者一个好友所记录的信息是一个FriendsOrGroups对象，对象中包含它的id,name,avatar,signature,status.
+     * 对群或者一个好友所记录的信息是一个FriendsOrGroups对象，对象中包含它的id,name,profile,signature,status.
      */
     public static class FriendsOrGroups implements Serializable {
         private static final long serialVersionUID = -1855195980029629286L;
         private final String id;
         private final String name;
-        private final String avatar;
+        private final String profile;
         private final String signature;
         private final String status;
 
         /**
          * 创建一个群信息对象或好友信息对象
          */
-        public FriendsOrGroups(String id, String name, String avatar, String signature, String status) {
+        public FriendsOrGroups(String id, String name, String profile, String signature, String status) {
             this.id = id;
             this.name = name;
-            this.avatar = avatar;
+            this.profile = profile;
             this.signature = signature;
             this.status = status;
         }
@@ -92,10 +92,10 @@ public class UserInfo implements Serializable {
         /**
          * 获取好友/群头像链接(url)
          *
-         * @return avatar String对象
+         * @return profile String对象
          */
-        public String getAvatar() {
-            return avatar;
+        public String getProfile() {
+            return profile;
         }
 
         /**
@@ -103,7 +103,7 @@ public class UserInfo implements Serializable {
          *
          * @return signature String对象
          */
-        public String getTrades() {
+        public String getSignature() {
             return signature;
         }
 

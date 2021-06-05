@@ -99,10 +99,10 @@ public final class DataCheck {
             while (resultSet.next()) {
                 String fId = resultSet.getString("myfriend");
                 String fName = resultSet.getString("user_name");
-                String fAvatar = resultSet.getString("user_avatar");
-                String fTrade = resultSet.getString("user_signature");
+                String fProfile = resultSet.getString("user_profile");
+                String fSignature = resultSet.getString("user_signature");
                 String fStatus = ChatServer.getClientUser().containsKey(fId) ? "在线" : "离线";
-                friends.add(new FriendsOrGroups(fId, fName, fAvatar, fTrade, fStatus));
+                friends.add(new FriendsOrGroups(fId, fName, fProfile, fSignature, fStatus));
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -126,9 +126,9 @@ public final class DataCheck {
                 String gId = resultSet.getString("group_id");
                 String gName = resultSet.getString("group_name");
                 String gSignature = resultSet.getString("group_signature");
-                String gAvatar = resultSet.getString("group_avatar");
+                String gProfile = resultSet.getString("group_profile");
                 String gStatus = resultSet.getString("user_id");
-                groups.add(new FriendsOrGroups(gId, gName, gAvatar, gSignature, gStatus));
+                groups.add(new FriendsOrGroups(gId, gName, gProfile, gSignature, gStatus));
             }
             resultSet.close();
         } catch (SQLException e) {
@@ -166,7 +166,7 @@ public final class DataCheck {
                 userEmail = resultSet.getString("user_email");
                 userSex = resultSet.getString("user_sex");
                 userBirthday = resultSet.getString("user_birthday");
-                userProfile = resultSet.getString("user_avatar");
+                userProfile = resultSet.getString("user_Profile");
                 userSignature = resultSet.getString("user_signature");
                 userRegistertime = resultSet.getString("user_registertime");
             }

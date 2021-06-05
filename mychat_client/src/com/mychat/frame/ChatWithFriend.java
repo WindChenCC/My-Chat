@@ -28,7 +28,7 @@ public final class ChatWithFriend extends JFrame {
     private Box groupMemberBox;
     private JScrollPane showPanel, inputScroll, groupMemberScrollPanel;
     private JTextArea inputText;
-    private final Image headPic;
+    private final Image profilePic;
     private int messageNum = 0;
     private final boolean isGroup;
 
@@ -44,9 +44,9 @@ public final class ChatWithFriend extends JFrame {
         setTitle(friendNameString);
         setLayout(null);
         // 更改显示的小图标
-        headPic = (GetProfile.getAvatarImage(fid, isGroup ? "./Data/Avatar/Group/" : "./Data/Avatar/User/",
+        profilePic = (GetProfile.getProfileImage(fid, isGroup ? "./Data/Profile/Group/" : "./Data/Profile/User/",
                 friendProfileString)).getImage().getScaledInstance(41, 41, Image.SCALE_DEFAULT);
-        setIconImage(headPic);
+        setIconImage(profilePic);
         setSize(800, 620);
         init();
         this.add(close);
@@ -266,7 +266,7 @@ public final class ChatWithFriend extends JFrame {
             myPanel.setBackground(ColorInfo.NORMAL_COLOR);
             myPanel.setLayout(null);
             myPanel.setBounds(10, 0, 170, 30);
-            JLabel myProfileLabel = new JLabel(new ImageIcon(GetProfile.getAvatarImage(mid, "./Data/Avatar/User/", "").getImage()
+            JLabel myProfileLabel = new JLabel(new ImageIcon(GetProfile.getProfileImage(mid, "./Data/Profile/User/", "").getImage()
                     .getScaledInstance(30, 30, Image.SCALE_DEFAULT)));
             myProfileLabel.setBounds(0, 0, 30, 30);
 
@@ -292,8 +292,8 @@ public final class ChatWithFriend extends JFrame {
                 ImageIcon icon = new ImageIcon("./resource/default_profile.jpg");
                 String content = "陌生人(" + i + ")";
                 if (MainInterface.getFriend().containsKey(i)) {
-                    icon = GetProfile.getAvatarImage(i, "./Data/Avatar/User/",
-                            MainInterface.getFriend().get(i).getfAvatar());
+                    icon = GetProfile.getProfileImage(i, "./Data/Profile/User/",
+                            MainInterface.getFriend().get(i).getfProfile());
                     content = MainInterface.getFriend().get(i).getfName() + "("
                             + MainInterface.getFriend().get(i).getFid() + ")";
                 }

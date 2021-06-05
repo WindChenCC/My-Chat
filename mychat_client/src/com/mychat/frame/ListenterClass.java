@@ -149,12 +149,12 @@ class LoginListener implements ActionListener {
                     new Thread(new ChatThread(userIdString)).start();
                     new MainInterface(userIdString);
                 } else if (loginResult.equals("Repeat_login")) {
-                    JOptionPane.showMessageDialog(now, "重复登录");
+                    JOptionPane.showMessageDialog(now, "不能重复登录");
                 } else {
-                    JOptionPane.showMessageDialog(now, "您的登陆信息有误", "登陆失败", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(now, "用户名或密码错误", "登陆失败", JOptionPane.WARNING_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(now, "与服务器建立连接失败");
+                JOptionPane.showMessageDialog(now, "登陆超时，请检查您的网络或防火墙设置");
             }
         }).start();
     }
