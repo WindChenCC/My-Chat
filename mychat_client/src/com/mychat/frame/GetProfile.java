@@ -52,6 +52,7 @@ public final class GetProfile {
         } catch (Exception e) {
             profile = new ImageIcon("./resource/default_profile.jpg");
             System.out.println("获取头像失败，改为默认头像：" + profileUrl);
+            System.out.println(" *************************************");
         }
         return profile;
     }
