@@ -9,3 +9,4 @@ gen
 *.sql
 .gitignore
 mychat_server.jar
+/src/META-INF/
