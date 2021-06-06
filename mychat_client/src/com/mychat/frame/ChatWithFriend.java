@@ -115,7 +115,7 @@ public final class ChatWithFriend extends JFrame {
         friendName = new JLabel(friendNameString, JLabel.CENTER);
         friendName.setFont(new Font("微软雅黑", Font.PLAIN, 22));
         friendName.setForeground(Color.white);
-        friendName.setBounds(210, 12, 200, 22);
+        friendName.setBounds(210, 10, 200, 27);
         upPanel.add(friendName);
 
         // 个性签名
@@ -148,18 +148,11 @@ public final class ChatWithFriend extends JFrame {
              * resource[3] 信息
              */
             String[] resource = s.split("```", 4);
-            // 聊天面板显示用户昵称
-//            String fromName;
-//            if (mid.equals(resource[1])) {
-//                fromName = mName;
-//            } else {
-//                fromName =
-//            }
             String fromName = resource[1].equals(mid) ? mName
                     : (MainInterface.getFriend().containsKey(resource[1]) ? MainInterface.getFriend().get(resource[1]).getfName()
                     : MainInterface.getGroupMembers().get(resource[1]).getName());
             if (resource.length == 4) {
-                addMessage(resource[1], fromName, resource[0], resource[3], true);
+                addMessage(resource[1], fromName, resource[0].split("\\.")[0], resource[3], true);
             }
         }
         // 将滚动条拉到最下方

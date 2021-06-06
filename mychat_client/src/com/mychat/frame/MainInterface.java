@@ -152,7 +152,7 @@ public final class MainInterface extends JFrame {
         headPortrait.setIcon(new ImageIcon(userProfile));
 
         nameBox = Box.createHorizontalBox();
-        nameBox.setBounds(90, 35, 158, 20);
+        nameBox.setBounds(90, 35, 158, 25);
         // 用户昵称
         String username = userInfo.getUserName();
         nameLabel = new JLabel(username);
@@ -465,7 +465,7 @@ public final class MainInterface extends JFrame {
         return withGroup;
     }
 
-    public static  HashMap<String, UserInfo.FriendsGroups> getGroupMembers() {
+    public static HashMap<String, UserInfo.FriendsGroups> getGroupMembers() {
         return groupMembers;
     }
 

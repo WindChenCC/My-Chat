@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -179,7 +180,8 @@ class SendFriend implements ActionListener {
 
     private void sendMes() {
         if (this.message.getText().trim().length() != 0) {
-            now.addMessage(mid, mName, new Date().toString(), this.message.getText(), false);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            now.addMessage(mid, mName, dateFormat.format(new Date()), this.message.getText(), false);
             ChatThread.getDataStream().send(this.message.getText(), fid, isGroup);
             this.message.setText("");
         }
@@ -219,7 +221,8 @@ class PressEnter implements KeyListener {
 
     private void sendMes() {
         if (this.message.getText().trim().length() != 0) {
-            now.addMessage(mid, mName, new Date().toString(), this.message.getText(), false);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            now.addMessage(mid, mName, dateFormat.format(new Date()), this.message.getText(), false);
             ChatThread.getDataStream().send(this.message.getText(), fid, isGroup);
             this.message.setText("");
         }

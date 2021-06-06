@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
@@ -89,7 +90,8 @@ public final class DataStream implements Runnable {
              */
             String type = res[0];
             String toId = res[2];
-            message = new Date() + "```" + message;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            message = dateFormat.format(new Date()) + "```" + message;
             if (type.equals("toFriend")) {
                 if (ChatServer.getClientUser().containsKey(toId)) {
                     ChatServer.getClientUser().get(toId).send(message);
