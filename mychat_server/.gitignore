@@ -8,3 +8,4 @@ gen
 /Data/
 *.sql
 .gitignore
+mychat_server.jar

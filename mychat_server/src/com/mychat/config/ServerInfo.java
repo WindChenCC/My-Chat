@@ -29,7 +29,7 @@ public final class ServerInfo {
     /**
      * Mysql 数据库名称：{@value}
      */
-    public final static String DB_NAME = "oicq";
+    public final static String DB_NAME = "mychat";
 
     /**
      * Mysql 数据库连接用户名：{@value}

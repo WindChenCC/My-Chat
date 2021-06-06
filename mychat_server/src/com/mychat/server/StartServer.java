@@ -31,7 +31,7 @@ public class StartServer {
                 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"+
                 "              MyChat服务端已启动              \n" +
                 "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n" +
-                "            佛祖保佑       永无BUG            ";
+                "            佛祖保佑      永无BUG             ";
         new Thread(new VerifyThread()).start();
         System.out.println("*********************************************");
         System.out.println(str);
