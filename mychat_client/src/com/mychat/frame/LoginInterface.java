@@ -31,12 +31,6 @@ public final class LoginInterface extends JFrame {
      */
     private void init() {
         /*
-         * shadow
-         */
-        JPanel shadowPanel = new DropShadowPanel(8);
-        shadowPanel.setLayout(new FlowLayout());
-
-        /*
          * panel up
          */
         upPanel = new JPanel();
@@ -54,11 +48,8 @@ public final class LoginInterface extends JFrame {
         close = new JButton();
         close.setMargin(new Insets(0, 0, 0, 0));
         close.setBounds(390, 0, 40, 40);
-        // set don't draw message area
         close.setContentAreaFilled(false);
-        // set don't draw border
         close.setBorderPainted(false);
-        // set don't draw focus painted
         close.setFocusPainted(false);
         close.setToolTipText("关闭");
         close.setIcon(new ImageIcon("./resource/button/closebutton_normal.png"));
@@ -158,7 +149,7 @@ public final class LoginInterface extends JFrame {
         /*
          * Button register
          */
-        // 点击注册账号按钮，打开注册账号的网页
+        // 点击注册账号按钮，打开注册账号的网页(目前还未实现)
         register = new JButton();
         register.setMargin(new Insets(0, 0, 0, 0));
         register.setBounds(340, 37, 51, 16);
@@ -305,8 +296,7 @@ public final class LoginInterface extends JFrame {
         init();
         upPanel.add(close);
         upPanel.add(minimize);
-        // upPanel.add(logo);
-        add(upPanel);
+
         downPanel.add(headPortrait);
         textFiledPanel.add(userId);
         textFiledPanel.add(passwd);
@@ -318,6 +308,7 @@ public final class LoginInterface extends JFrame {
         downPanel.add(rememberPasswd);
         downPanel.add(autoLogin);
         downPanel.add(login);
+        add(upPanel);
         add(downPanel);
         LoginMousemove adapter = new LoginMousemove();
         addMouseMotionListener(adapter);
