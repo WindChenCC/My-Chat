@@ -119,8 +119,7 @@ public final class VerifyConnection implements Runnable {
                 in.close();
                 userSocket.close();
             }
-        } catch (IOException | ClassNotFoundException e) {
-//            System.out.println("VerifyConnection 与服务器失去联系 ：" + e.getMessage());
+        } catch (IOException | ClassNotFoundException ignored) {
         }
     }
 }
