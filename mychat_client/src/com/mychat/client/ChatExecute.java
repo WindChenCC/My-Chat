@@ -64,7 +64,7 @@ public final class ChatExecute {
             }
         } // 接收的内容是为了改变用户状态（在线/离线）
         else if (res.length == 3) {
-            /* res[0]:验证标识、res[1]:状态信息、res[2]:好友ID */
+            // res[0]:验证标识、res[1]:状态信息、res[2]:好友ID
             if (res[0].equals("OnlineSituation")) {
                 if (MainInterface.getFriend().containsKey(res[2])) {
                     MainInterface.getFriend().get(res[2]).setfOnline(res[1]);
