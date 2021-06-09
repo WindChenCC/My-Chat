@@ -7,8 +7,7 @@ public final class ServerInfo {
     /**
      * 服务器地址
      */
-//    public final static String SERVER_IP = "localhost";
-    public final static String SERVER_IP = "1.117.46.165";
+    public final static String SERVER_IP = "localhost";
     /**
      * 聊天监听端口
      */
